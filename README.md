@@ -4,4 +4,7 @@ This repository contains source code for [this article on my blog](https://wp.me
 
 Running the application:
 
-`npx webpack-serve`
+```
+npm install
+npx webpack-serve
+```
