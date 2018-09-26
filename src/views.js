@@ -1,5 +1,5 @@
 import { curry } from 'ramda';
-import h from 'hyperscript';
+import h from 'virtual-dom/h';
 import hh from 'hyperscript-helpers';
 
 import { toggleCompleted } from './actions';
@@ -55,7 +55,7 @@ function climblistRow(dispatch, climb) {
                 null, 
                 button(
                     '.btn.btn-primary', 
-                    { onclick: () => dispatch(toggleCompleted(climb.id)) }, 
+                    { onclick: () => dispatch(toggleCompleted(climb.id)) },
                     toggleLabel
                 )
             )

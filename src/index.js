@@ -1,17 +1,26 @@
 import { view } from './views';
 import { initialState, reducer } from './reducers';
 
-const rootNode = document.getElementById('root');
+import diff from 'virtual-dom/diff';
+import patch from 'virtual-dom/patch';
+import createElement from 'virtual-dom/create-element';
 
-function app(state) {
+let rootNode = document.getElementById('root');
+
+function app(state, previousView = null) {
     const updatedView = view(dispatch, state);
-    const currentView = rootNode.childNodes[0];
 
-    rootNode.replaceChild(updatedView, currentView);
+    if (previousView === null) {
+      const updatedViewDom = createElement(updatedView);
+      rootNode.appendChild(updatedViewDom);
+    } else {
+      const patches = diff(previousView, updatedView);
+      patch(rootNode.children[0], patches);
+    }
 
     function dispatch(action) {
         const nextState = reducer(state, action);
-        app(nextState);
+        app(nextState, updatedView);
     }
 }
 

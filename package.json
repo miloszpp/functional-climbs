@@ -17,6 +17,7 @@
   "dependencies": {
     "hyperscript": "^2.0.2",
     "hyperscript-helpers": "^3.0.3",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "virtual-dom": "^2.1.1"
   }
 }
